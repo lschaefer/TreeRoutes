@@ -44,7 +44,7 @@ if user_inS!='' and user_inE!='':
         st.map(df)
         
     except:
-        print("somethign wrong with the route, chekck your inputs")
+        print("something wrong with the route, check your inputs")
     
     images=[] # this will be a list of sublists: each list entry corresponds to a route, each sublist entry corresponds to images along that route
     scores=[] # this will be a list of scores: each list entry corresponds to a route
