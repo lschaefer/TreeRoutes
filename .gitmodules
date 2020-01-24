@@ -1,0 +1,3 @@
+[submodule "places365"]
+	path = places365
+	url = https://github.com/lschaefer/places365
