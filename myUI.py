@@ -134,7 +134,7 @@ if user_inS!='' and user_inE!='':
         #     # for last turn, take the end as well
         #     path+='%.6f,%.6f' %(step['end_location']['lat'],step['end_location']['lng'])
         #     try:
-        #         googleRoads = requests.get('https://roads.googleapis.com/v1/snapToRoads?'+path+'&key=AIzaSyAeirw1w8IQT6qgvAUcEeDX0Ek25R51l-E&interpolate=true')
+        #         googleRoads = requests.get('https://roads.googleapis.com/v1/snapToRoads?'+path+'&key='+myGoogleKey+'&interpolate=true')
         #     except:
         #         googleRoads = "connection refused"
         #     print(googleRoads)
