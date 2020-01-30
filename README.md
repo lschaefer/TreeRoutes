@@ -19,7 +19,10 @@ Create a file in the top directory called `myKeys.py` with the structure:
 This will open an interactive tab in your browser where you can input your start and endpoints.
 
 ## To train the CNN:
-Currently this is hacky but will improve soon.
+The real version, still not quite tested:
+`python places365/retrainCNN.py`
+
+The hacky version:
 `python runPlacesCnnOnScenicOrNotImages___leighLabels.py`
 
 ## To validate the CNN:
@@ -31,6 +34,7 @@ Currently this is hacky but will improve soon.
 ## To do some EDA on the scenery score:
 
 ## Data needed for each script:
-| Script | Expected filename | Description | Where to download |
+| Script | Expected filename | Description | How to prep |
 | --- | --- | --- | --- |
-| `runPlacesCnnOnScenicOrNotImages___leighLabels.py` | `data/images.tsv` | Contains scenery scores and (links to) 200k images | http://scenicornot.datasciencelab.co.uk/ |
+| `runPlacesCnnOnScenicOrNotImages___leighLabels.py` | `data/images.tsv` | Contains scenery scores and links to 200k images | Download from http://scenicornot.datasciencelab.co.uk/ |
+| `places365/retrainCNN.py` | `data/imagesWithJpg.tsv`, `data/sond/*jpg` | Contains scenery scores and (paths to) 200k images | Download from http://scenicornot.datasciencelab.co.uk/, then run `python makeCsvWithLocalPath.py` |
