@@ -1,0 +1,21 @@
+On the Deep Learning AMI (Amazon Linux) Version 26.0.
+Follow instructions here when creating instance to have correct setup for streamlit
+https://blog.jcharistech.com/2019/10/29/how-to-deploy-streamlit-apps-on-aws-ec2/
+
+Once you've logged in.
+source activate pytorch_p36
+
+pip install streamlit
+pip install pillow==6.1
+pip install folium
+pip install polyline
+pip install geopy
+
+git clone the repo's
+
+Then you can run `streamlit run myUI.py`
+To have it running constantly, do it in a tmux session: 
+sudo yum install tmux
+tmux new -s st_instance
+https://tmuxcheatsheet.com/
+
