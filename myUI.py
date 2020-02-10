@@ -146,10 +146,9 @@ def getRouteScores(routes):
                 continue
             imageNames[-1].append(outName)
             imageScores[-1].append(imageScore)
-            routeScore *= imageScore
 
         # route score combined over all images
-        scores.append(routeScore*natureCount)
+        scores.append(natureCount*sum(imageScores[-1])/float(len(imageScores[-1])))
         times.append(route['legs'][0]['duration']['value'])
         natureCounts.append(natureCount)
         
