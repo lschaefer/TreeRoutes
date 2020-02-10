@@ -58,6 +58,25 @@ def getRouteScores(routes):
     polyLines=[] # detailed coordinate system along route, to draw on map
     latLons=[] # points defining segments (for corners of nature boxes / where images are taken)
 
+    # get segments unique to this route, and the distance of unique segments
+    uniquePolyLines=[]
+    lengthPolyLines=[]
+    for iR,route in enumerate(routes):
+        uniquePolyLines.append([])
+        thisLine = polyline.decode(route['overview_polyline']['points'])
+        thisLine = [(round(l[0],4),round(l[1],4)) for l in thisLine]
+        otherLines = []
+        for iRR,rroute in enumerate(routes):
+            if iRR==iR:
+                continue
+            otherLine = polyline.decode(rroute['overview_polyline']['points'])
+            otherLines.extend( [(round(l[0],4),round(l[1],4)) for l in otherLine] )
+        thisDist = 0
+        uniquePolyLines[-1] = [l for l in thisLine if l not in otherLines]
+        for iP,point in enumerate(uniquePolyLines[-1][:-1]):
+            thisDist += geodesic(point,uniquePolyLines[-1][iP+1]).meters
+        lengthPolyLines.append(thisDist)
+
     for iR,route in enumerate(routes):
 
         # initialize lists of lists to hold images along route iR
@@ -66,16 +85,17 @@ def getRouteScores(routes):
         imageScores.append([])
         latLons.append([])
 
-        # get the full polyLine for each route
-        thisLine = polyline.decode(route['overview_polyline']['points'])
-        polyLines.append(thisLine)
-        
+        # get the full and unique polyLines for each route
+        polyLines.append(polyline.decode(route['overview_polyline']['points']))
+        thisLine = uniquePolyLines[iR]
+
         routeScore = 1.
         natureCount = 0.5 # not 0 just in case there are 0 sightings
 
-        # take 6 images per route
-        routeDistance=route['legs'][0]['distance']['value'] # in meters (use 'text' key instead to get a string e.g. '35 mi')
-        picFreq = routeDistance/6.
+        # take 5 images per route
+        #routeDistance=route['legs'][0]['distance']['value'] # in meters (use 'text' key instead to get a string e.g. '35 mi')
+        routeDistance=lengthPolyLines[iR]
+        picFreq = routeDistance/5.
 
         # split route into segments
         distanceTraveled=0
