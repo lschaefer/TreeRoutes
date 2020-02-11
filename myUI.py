@@ -120,11 +120,11 @@ def getRouteScores(routes):
                 latMax=str(max(myLat,latLons[-1][iP+1][0]))
                 lonMin=str(min(myLon,latLons[-1][iP+1][1]))
                 lonMax=str(max(myLon,latLons[-1][iP+1][1]))
+                thisArea = geodesic((latMin,lonMin),(latMax,lonMin)).meters*geodesic((latMin,lonMax),(latMax,lonMax)).meters
                 try:
                     nature=requests.get("https://api.gbif.org/v1/occurrence/search?datasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&decimalLatitude="+str(latMin)+","+str(latMax)+"&decimalLongitude="+str(lonMin)+","+str(lonMax))
                     if nature.status_code==200:
-                        thisDist = geodesic(point,latLons[-1][iP+1]).meters
-                        natureCount+=len(nature.json()['results'])/float(thisDist)
+                        natureCount+=len(nature.json()['results'])/float(thisArea)
                 except requests.exceptions.ConnectionError:
                     if debug:
                         print("connection error with nature sightings request")
