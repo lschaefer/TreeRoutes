@@ -2,15 +2,15 @@
 ## Make the journey your destination.
 This is the framework used to train, validate, and run the scenic route recommender.
 
-It uses [Google][https://cloud.google.com/maps-platform/] 
-and [iNaturalist][https://www.inaturalist.org/] 
+It uses [Google](https://cloud.google.com/maps-platform/) 
+and [iNaturalist](https://www.inaturalist.org/) 
 APIs to collect data according to the user's input start and endpoints,
 including Google Streetview images along the route.
 It then calculates the scenery score of each image using a custom-trained convolutional neural network (CNN).
-This CNN retrained the last layer of the [Places365 CNN][http://places.csail.mit.edu/],
-with [Scenic Or Not][http://scenicornot.datasciencelab.co.uk/] labeled data.
+This CNN retrained the last layer of the [Places365 CNN](http://places.csail.mit.edu/),
+with [Scenic Or Not](http://scenicornot.datasciencelab.co.uk/) labeled data.
 The retraining procedure consists of code that can be found in the submodule `places365` 
-(forked and updated from the original research group's [repo][https://github.com/CSAILVision/places365]).
+(forked and updated from the original research group's [repo](https://github.com/CSAILVision/places365)).
 
 ## Setup
 To access the app, you can simply go to http://treeroutes.xyz:8501/ .
